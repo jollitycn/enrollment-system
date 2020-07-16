@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.TargetDecompositionMapper">
+
+    <select id="selectByNodeId" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select
+            d.target_amount
+        from
+            e_r_target_decomposition d
+        where
+            d.node_id=#{nodeId}
+    </select>
+
+</mapper>

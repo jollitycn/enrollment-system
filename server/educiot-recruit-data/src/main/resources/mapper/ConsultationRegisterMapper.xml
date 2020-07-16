@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.ConsultationRegisterMapper">
+    <select id="getConsultationCalender" resultType="com.educiot.recruit.data.entity.vo.ConsultationCalenderVO">
+        SELECT
+            cr.consultation_date as date,
+            count(1) AS actualAmount
+        FROM
+            e_r_consultation_register cr
+        WHERE
+            cr.consultation_id = #{consultationId}
+        GROUP BY
+            cr.consultation_date
+
+    </select>
+
+    <select id="getAttendList" resultType="com.educiot.recruit.data.entity.ConsultationRegister">
+        SELECT
+            *
+        FROM
+            e_r_consultation_register cr
+        WHERE
+            cr.consultation_date = #{date}
+        AND cr.consultation_id = #{consultationId}
+    </select>
+
+    <select id="getConsultationRegisterList" resultType="com.educiot.recruit.data.entity.vo.ConsultationRegisterVO">
+        SELECT
+            cr.consultation_register_id,
+            cr.consultation_type,
+            ss.source_school_id,
+            ss.source_school_name,
+            spr.class_id,
+            c.class_name,
+            cr.telephone,
+            cr.attend_time,
+            cr.is_lunch,
+            cr.`comment`,
+            cr.student_public_relation_id,
+            cr.student_name,
+            cr.teacher,
+            cr.amount
+        FROM
+            e_r_consultation_register cr
+        LEFT JOIN e_r_student_public_relation spr on cr.student_public_relation_id = spr.student_public_relation_id
+        LEFT JOIN e_r_class c on spr.class_id = c.class_id
+        LEFT JOIN e_r_source_school ss on cr.source_school_id = ss.source_school_id
+        WHERE
+            cr.consultation_date = #{date}
+        AND cr.consultation_id = #{consultationId}
+        AND cr.consultation_type = #{consultationType}
+    </select>
+
+    <select id="getConsultationListByStudent" resultType="com.educiot.recruit.data.entity.vo.StudentConsultationListVO">
+        SELECT
+            consultation_register_id,
+            consultation_date,
+            telephone,
+            attend_time,
+            is_lunch,
+            `comment`
+        FROM
+            e_r_consultation_register
+        where student_public_relation_id = #{studentPublicRelationId}
+    </select>
+
+    <select id="getRegisterCount" resultType="com.educiot.recruit.data.entity.vo.ConsultationRegisterCountVO">
+        SELECT
+            consultation_date AS consultationDate,
+            sum(consultation_type = 0) AS personalCount,
+            sum(consultation_type = 1) AS schoolCount
+        FROM
+            e_r_consultation_register
+        WHERE
+            consultation_id = #{consultationId}
+        GROUP BY
+            consultation_date
+    </select>
+</mapper>

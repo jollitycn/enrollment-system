@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.preach.PreachRegisterMapper">
+	<select id="listPage" resultType="com.educiot.recruit.data.entity.vo.preach.PreachRegisterPageVO"
+			parameterType="com.educiot.recruit.data.entity.query.preach.register.PreachRegisterPageQuery">
+		select
+		a.create_time createTime,
+		a.preach_register_id preachRegisterId,
+		a.student_info studentInfo,
+		a.student_name studentName,
+		a.image_url imageUrl,
+		a.student_public_relation_id studentPublicRelationId,
+		a.student_no studentNo,
+		a.recruit_school_id recruitSchoolId,
+		a.source_school_id sourceSchoolId,
+		a.source_school_name sourceSchoolName,
+		a.class_id classId,
+		a.class_name className,
+		b.name parentName,
+		b.telephone parentTelephone
+		from (<include refid="listRegsitersSql"></include>) a left join
+		(<include refid="listFirstFamilySql"></include>)b on a.student_public_relation_id = b.student_public_relation_id
+		order by a.create_time desc
+	</select>
+	<sql id="listRegsitersSql">
+        SELECT
+        pr.create_time,
+  pr.preach_register_id,
+	si.student_info,
+	si.student_name,
+	si.image_url,
+	spr.student_public_relation_id,
+	spr.student_no,
+	spr.recruit_school_id,
+	spr.source_school_id,
+	ss.source_school_name,
+	c.class_id,
+	c.class_name
+FROM
+	e_r_preach_register pr
+	LEFT JOIN e_r_student_public_relation spr ON pr.student_public_relation_id = spr.student_public_relation_id
+	LEFT JOIN e_r_student_info si ON spr.student_info = si.student_info
+	LEFT JOIN e_r_recruit_school rs ON spr.recruit_school_id = rs.recruit_school_id  
+	left join e_r_class c on spr.source_school_id = c.source_school_id 
+	left join e_r_source_school ss on spr.source_school_id = ss.source_school_id
+WHERE pr.STATUS != 0 
+	AND spr.STATUS != 0
+	and pr.preach_plan_id = #{query.preachPlanId}
+    </sql>
+	<sql id="listFirstFamilySql">
+ select  spr.student_public_relation_id,fm.name,fm.telephone  from
+	e_r_preach_register pr
+	LEFT JOIN e_r_student_public_relation spr ON pr.student_public_relation_id = spr.student_public_relation_id
+	left join 	e_r_family_member fm on spr.student_info= fm.student_info
+	where pr.preach_plan_id = #{query.preachPlanId}
+	 group by student_public_relation_id
+    </sql>
+
+
+	<select id="queryPreachList" resultType="com.educiot.recruit.data.entity.vo.preach.PreachRegisterPageVO"
+			parameterType="com.educiot.recruit.data.entity.query.preach.register.PreachRegisterPageQuery">
+		SELECT
+			ss.source_school_name,
+			spr.student_no,
+			si.student_name,
+			spr.student_public_relation_id,
+			si.student_info,
+			pr.preach_register_id,
+			si.image_url,
+			c.class_id,
+			c.class_name,
+			si.parent_telephone,
+			spr.recruit_school_id,
+			ss.source_school_id,
+			'' as parent_name
+		FROM
+			e_r_preach_plan pp
+			LEFT JOIN e_r_preach_register pr ON pp.preach_plan_id = pr.preach_plan_id
+			left join e_r_student_public_relation spr on pr.student_public_relation_id=spr.student_public_relation_id
+			left join e_r_source_school ss on spr.source_school_id=ss.source_school_id
+			left join e_r_student_info si on spr.student_info=si.student_info
+			left join e_r_class c on c.class_id=spr.class_id
+		WHERE
+			pr.STATUS = 1
+			AND (pp.status =2 or pp.status=3)
+			and pp.preach_plan_id=#{query.preachPlanId}
+	</select>
+
+
+	<select id="checkSignIn" resultType="com.educiot.recruit.data.entity.preach.PreachRegister">
+		SELECT r.* FROM  e_r_preach_register r  WHERE r.`student_public_relation_id`=#{studentPublicRelationId} and r.`preach_plan_id` = #{preachPlanId} and r.status = 1
+	</select>
+
+	<select id="checkSignUp"  resultType="com.educiot.recruit.data.entity.preach.PreachRegister">
+		SELECT r.* FROM  e_r_preach_register r  WHERE r.`student_public_relation_id`=#{studentPublicRelationId} and r.`preach_plan_id` = #{preachPlanId} and r.status = 0
+	</select>
+</mapper>

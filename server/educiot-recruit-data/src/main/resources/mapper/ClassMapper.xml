@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.ClassMapper">
+    <!-- 分页获取生源学校下的班级列表 -->
+    <select id="listSchoolClassPage" resultType="com.educiot.recruit.data.entity.vo.ClassVO">
+        SELECT
+            c.class_id,
+            c.class_name,
+            c.`level`,
+            c.adviser,
+            c.telephone,
+            c.amount,
+            c.willing_amount,
+            c.`comment`
+        FROM
+            e_r_class c
+            LEFT JOIN e_r_plan pp ON c.semester_id = pp.semester_id
+        WHERE
+            c.source_school_id = #{param.sourceSchoolId}
+            AND (pp.`status` = 2 or pp.`status` = 3)
+            AND c.semester_id = #{semesterId}
+        ORDER BY
+            c.`create_time` DESC
+    </select>
+
+    <!-- 获取指定生源学校下的所有班级 -->
+    <select id="listClassBySource" resultType="com.educiot.recruit.data.entity.vo.ClassIdAndNameVO">
+        SELECT
+            c.class_id,
+            c.class_name
+        FROM
+            e_r_class c
+        left join e_r_plan pp
+        on c.semester_id= pp.semester_id
+        where pp.semester_start = (select MAX(pl.semester_start) from e_r_plan pl where pl.`status` =2 and pl.recruit_school_id =  #{param.recruitSchoolId} )
+        and pp.status = 2
+         and pp.recruit_school_id =  #{param.recruitSchoolId}
+         and c.source_school_id = #{param.sourceSchoolId}
+        ORDER BY
+            c.`create_time` DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.GroupMapper">
+    <!-- 分页获取招生分组信息列表 -->
+    <select id="listGroupPage" resultType="com.educiot.recruit.data.entity.vo.GroupVO">
+        SELECT
+            g.group_id,
+            g.`name`,
+            g.creator_name,
+            g.create_time,
+            g.`comment`,
+            g.dept_id,
+            g.dept_name,
+            g.area_id
+        FROM
+            e_r_group g
+        WHERE
+            g.`status` = 1
+        AND g.group_info_id = #{param.groupInfoId}
+        ORDER BY
+            g.create_time DESC
+    </select>
+
+
+    <select id="getTargetUnderLineData" resultType="com.educiot.recruit.data.entity.Group">
+        SELECT
+            a.group_id,
+            a.group_info_id,
+            a.`name`,
+            a.creator_id,
+            a.creator_name,
+            a.create_time,
+            a.`comment`,
+            a.dept_id,
+            a.dept_name,
+            a.area_id,
+            a.`status`,
+            a.target_amount
+        FROM
+            e_r_group a
+        LEFT JOIN e_r_group_info b ON b.group_info_id = a.group_info_id
+        WHERE
+            b.recruit_school_id = #{recruitSchoolId} AND b.semester_id = #{semesterId}
+            and a.status=1
+    </select>
+
+    <select id="queryGroupCount" resultType="java.lang.Integer">
+        SELECT
+          count(a.group_id)
+        FROM
+            e_r_group a
+        LEFT JOIN e_r_group_info b ON b.group_info_id = a.group_info_id
+        WHERE
+            b.recruit_school_id = #{recruitSchoolId} AND b.semester_id = #{semesterId} and a.name=#{name}
+            and a.status=1
+    </select>
+
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.RequestMapper">
+
+    <resultMap id="BaseMap" type="com.educiot.recruit.data.entity.vo.RequestVO">
+        <id column="request_id" property="requestId"/>
+        <result column="student_public_relation_id" property="studentPublicRelationId"/>
+        <result column="request_type" property="requestType"/>
+        <result column="request_content" property="requestContent"/>
+        <result column="create_time" property="createTime"/>
+        <result column="reply_id" property="replyId"/>
+        <result column="reply_name" property="replyName"/>
+        <result column="reply_time" property="replyTime"/>
+        <result column="reply_content" property="replyContent"/>
+        <result column="status" property="status"/>
+        <result column="source_school_name" property="sourceSchoolName"/>
+        <result column="class_name" property="className"/>
+        <result column="student_name" property="studentName"/>
+        <result column="student_telephone" property="studentTelephone"/>
+    </resultMap>
+
+    <select id="queryRequestInfo" resultMap="BaseMap" parameterType="com.educiot.recruit.data.entity.query.RequestQuery">
+      SELECT
+            r.create_time,
+            r.reply_content,
+            r.reply_id,
+            r.reply_name,
+            r.reply_time,
+            r.request_content,
+            r.request_id,
+            r.request_type,
+            r.student_public_relation_id,
+            r.`status`,
+            ss.source_school_name,
+            c.class_name,
+            si.student_name,
+            si.student_telephone
+        FROM
+            e_r_request r
+        LEFT JOIN e_r_student_public_relation pr ON r.student_public_relation_id = pr.student_public_relation_id
+        LEFT JOIN e_r_source_school ss ON ss.source_school_id = pr.source_school_id
+        LEFT JOIN e_r_class c ON c.class_id = pr.class_id
+        LEFT JOIN e_r_student_info si ON si.student_info = pr.student_info
+        WHERE
+            1=1
+        <if test='param.status!=null'>
+            AND r.`status` = #{param.status}
+        </if>
+        <if test='param.studentPublicRelationId!=null and param.studentPublicRelationId!=""'>
+            AND r.student_public_relation_id = #{param.studentPublicRelationId}
+        </if>
+        <if test='param.recruitSchoolId!=null and param.recruitSchoolId!=""'>
+            AND pr.recruit_school_id = #{param.recruitSchoolId}
+        </if>
+        <if test='param.studentInfo!=null and param.studentInfo!=""'>
+            AND pr.student_info = #{param.studentInfo}
+        </if>
+        <if test='param.creatorId!=null and param.creatorId!=""'>
+            AND pr.creator_id = #{param.creatorId}
+        </if>
+        order by r.create_time DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.TaskMapper">
+    <select id="getTaskList" resultType="com.educiot.recruit.data.entity.vo.TaskListVO">
+        SELECT
+            tr.task_receiver_id,
+            DATE(tr.create_time) AS createTime,
+            tr.`status`,
+            sd.data_value AS content,
+            t.task_type,
+            t.jump_page,
+            t.report_type,
+            t.creator_name,
+            tr.read_status
+        FROM
+            e_r_task_receiver tr
+        LEFT JOIN e_r_task t ON t.task_id = tr.task_id
+        LEFT JOIN e_r_sys_dictionary sd ON t.content = sd.data_code
+        WHERE
+            tr.semester_id = #{semesterId}
+        AND tr.`status` = #{status}
+        AND tr.receiver_id = #{userId}
+        AND sd.recruit_school_id = #{schoolId}
+        AND t.type = 0
+        ORDER BY tr.create_time DESC, tr.read_status ASC
+    </select>
+</mapper>

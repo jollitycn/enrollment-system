@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.StudentPublicRelationMapper">
+
+    <resultMap id="StudentPublicRelationMap" type="com.educiot.recruit.data.entity.vo.StudentPublicRelationVO">
+        <result column="name" property="name"/>
+        <result column="group_id" property="groupId"/>
+    </resultMap>
+
+    <select id="getIdByRecruitSchoolId" resultType="java.lang.Long">
+        SELECT
+        pr.student_public_relation_id
+        FROM
+        e_r_student_public_relation pr
+        where pr.student_info=#{studentInfo}
+        <if test='recruitSchoolId!=null and recruitSchoolId!=""'>
+            and pr.recruit_school_id=#{recruitSchoolId}
+        </if>
+        limit 0,1
+    </select>
+
+    <select id="getRecruitSchoolIdByStudentInfo" resultType="java.lang.Long">
+        SELECT
+        pr.recruit_school_id
+        FROM
+        e_r_student_public_relation pr
+        where pr.student_info=#{studentInfo}
+        <if test='recruitSchoolId!=null and recruitSchoolId!=""'>
+            and pr.recruit_school_id=#{recruitSchoolId}
+        </if>
+        limit 0,1
+    </select>
+
+    <select id="getStudentPublicRelation" resultType="com.educiot.recruit.data.entity.vo.StudentPublicRelationVO">
+        SELECT
+            pr.group_id,
+            pr.student_public_relation_id
+        FROM
+            e_r_student_public_relation pr
+        WHERE
+            pr.student_info = #{studentInfo}
+            AND pr.recruit_school_id = #{recruitSchoolId}
+    </select>
+
+    <select id="queryPrincipal" resultMap="StudentPublicRelationMap" parameterType="java.lang.Long">
+        SELECT
+            g.name,
+            g.group_id
+        FROM
+            e_r_student_public_relation pr
+        LEFT JOIN e_r_group_source_relation sr ON pr.source_school_id = sr.source_school_id
+        LEFT JOIN e_r_group g ON sr.group_id = g.group_id
+        where pr.student_info=#{studentInfo} and pr.recruit_school_id=#{recruitSchoolId}
+    </select>
+
+    <select id="queryStudentNo" resultType="java.lang.Integer" parameterType="java.lang.Long">
+        SELECT
+            MAX(pr.student_no)+1 as studentNo
+        FROM
+            e_r_student_public_relation pr
+        WHERE
+            pr.recruit_school_id = #{recruitSchoolId} and pr.semester_id = #{semesterId}
+    </select>
+
+    <select id="queryStudentPublicRelation" resultType="com.educiot.recruit.data.entity.vo.StudentPublicRelationRecordVO" parameterType="java.lang.Long">
+        SELECT
+            spr.student_public_relation_id,
+            spr.student_info,
+            spr.recruit_school_id,
+            spr.source_school_id,
+            spr.class_id,
+            spr.create_time,
+            spr.STATUS,
+            spr.LEVEL,
+            spr.reason,
+            spr.direction,
+            spr.relation_type,
+            spr.creator_id,
+            spr.creator_name,
+            spr.register_status,
+            spr.semester,
+            spr.group_id,
+            spr.semester_id,
+            spr.student_no,
+            spr.status_change_time,
+            g.`name`
+        FROM
+            e_r_student_public_relation spr
+        LEFT JOIN e_r_charger c ON spr.creator_id = c.charger_id
+        LEFT JOIN e_r_group g ON c.group_id = g.group_id
+        WHERE
+            spr.student_info = #{studentInfo} and spr.recruit_school_id=#{recruitSchoolId}
+    </select>
+
+</mapper>

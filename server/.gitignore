@@ -1,0 +1,13 @@
+/.idea/
+.svn/
+#educiot-recruit-third/
+educiot-recruit.iml
+nginx.conf
+pom.xml
+/educiot-recruit-server-wechat/target/
+/educiot-recruit-server-app/target/
+/educiot-recruit-server/target/
+/educiot-recruit-data/target/
+/educiot-common/target/
+/educiot-recruit-third/target/
+#/educiot-recruit-core/

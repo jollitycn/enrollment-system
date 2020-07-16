@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.SysDictionaryMapper">
+    <insert id="insertBaseInfo">
+ INSERT INTO e_r_sys_dictionary( dictionary_id,
+parent_id ,
+data_code ,
+data_type ,
+data_value ,
+data_english_value ,
+data_desc ,
+data_order ,
+is_read_only ,
+is_deleted ,
+modify_id ,
+modify_name ,
+modify_time ,
+recruit_school_id) SELECT dictionary_id +#{recruitSchoolId},
+IF(parent_id=0,0,parent_id+#{recruitSchoolId}),
+data_code ,
+data_type ,
+data_value ,
+data_english_value ,
+data_desc ,
+data_order ,
+is_read_only ,
+is_deleted ,
+modify_id ,
+modify_name ,
+modify_time ,
+#{recruitSchoolId} FROM e_r_sys_dictionary_copy --  WHERE recruit_school_id =(SELECT recruit_school_id FROM e_r_sys_dictionary LIMIT 0,1)
+</insert>
+
+</mapper>

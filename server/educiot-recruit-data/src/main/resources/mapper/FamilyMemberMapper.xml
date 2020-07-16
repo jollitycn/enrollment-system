@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.FamilyMemberMapper">
+
+    <select id="queryTeacherCharge" parameterType="java.lang.Long" resultType="com.educiot.recruit.data.entity.vo.StudentChargerVO">
+        SELECT
+            c.`name`,
+            c.telephone,
+            c.charger_id
+        FROM
+            e_r_student_info si
+        LEFT JOIN e_r_student_public_relation pr ON si.student_info = pr.student_info
+        LEFT JOIN e_r_charger c ON c.api_id = pr.creator_id
+        WHERE
+            si.student_info = #{studentInfo} and pr.recruit_school_id=#{schoolId}
+            and c.group_id=#{groupId}
+            and c.`status`=1
+    </select>
+
+    <select id="queryChargeRelation" parameterType="java.lang.Long" resultType="com.educiot.recruit.data.entity.vo.ChargeRelationVO">
+        SELECT
+            c.charger_id,
+            c.`name`,
+            g.group_id,
+            c.api_id,
+            c.is_leader
+        FROM
+            e_r_group_source_relation gsr
+        LEFT JOIN e_r_group g ON gsr.group_id = g.group_id
+        LEFT JOIN e_r_group_info gi ON g.group_info_id = gi.group_info_id
+        LEFT JOIN e_r_charger c ON c.group_id = g.group_id
+        WHERE
+            gsr.source_school_id = #{sourceSchoolId}
+        AND gi.semester_id = #{semesterId}
+        AND c.status = 1 And c.is_leader = 1
+    </select>
+
+</mapper>

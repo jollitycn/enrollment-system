@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.AimStudentMapper">
+
+    <select id="listAimStudentPage" resultType="com.educiot.recruit.data.entity.AimStudent"
+            parameterType="com.educiot.recruit.data.entity.query.ListAimStudentPageQuery">
+        select
+        s.aim_student_id,
+        s.class_id,
+        s.student_name,
+        s.student_telephone,
+        s.father_name,
+        s.father_telephone,
+        s.mother_name,
+        s.mother_telephone,
+        s.`level`,
+        s.reason,
+        s.direction,
+        s.status
+        FROM
+        e_r_aim_student s
+        where
+        1=1
+        <if test='param.classId!=null and param.classId!=""'>
+            and s.class_id=#{param.classId}
+        </if>
+        <if test='param.name!=null and param.name!=""'>
+            and s.student_name like CONCAT('%',#{param.name},'%')
+        </if>
+        <if test='param.creatorId!=null and param.creatorId!=""'>
+            and s.creator_id = #{param.creatorId}
+        </if>
+        order by
+        s.create_time DESC
+    </select>
+
+    <select id="listAimStudentCount" resultType="java.lang.Integer"
+            parameterType="com.educiot.recruit.data.entity.query.ListAimStudentPageQuery">
+        SELECT
+        count(s.aim_student_id)
+        FROM
+        e_r_aim_student s
+        LEFT JOIN e_r_class c ON s.class_id = c.class_id
+        WHERE
+        1 = 1
+        AND c.semester_id=#{param.semesterId}
+        <if test='param.classId!=null and param.classId!=""'>
+            and s.class_id=#{param.classId}
+        </if>
+        <if test='param.name!=null and param.name!=""'>
+            and s.student_name like CONCAT('%',#{param.name},'%')
+        </if>
+        <if test='param.creatorId!=null and param.creatorId!=""'>
+            and s.creator_id = #{param.creatorId}
+        </if>
+    </select>
+
+    <select id="queryAimStudentInfo" resultType="com.educiot.recruit.data.entity.vo.AimStudentVO"
+            parameterType="java.lang.Long">
+        SELECT
+            am.aim_student_id,
+            am.class_id,
+            am.student_name,
+            am.create_time,
+            am.creator_name,
+            am.creator_id,
+            am.student_telephone,
+            am.father_name,
+            am.father_telephone,
+            am.mother_name,
+            am.mother_telephone,
+            am.LEVEL,
+            am.reason,
+            am.direction,
+            am.STATUS,
+            c.source_school_id
+        FROM
+            e_r_aim_student am
+        LEFT JOIN e_r_class c ON am.class_id = c.class_id
+        WHERE
+            am.aim_student_id = #{aimStudentId}
+    </select>
+</mapper>
