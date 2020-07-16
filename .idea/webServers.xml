@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d160785f-a24a-48d6-9bb4-0257ea47e239" name="SERVER" url="http://49.234.150.30:8601">
+        <fileTransfer rootFolder="/usr/local/project/educiot-recruit/educiot-recruit-server" accessType="SFTP" host="49.234.150.30" port="22" sshConfigId="7af20865-9f7b-4b21-afea-6e4db2069c37" sshConfig="root@49.234.150.30:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="7ea4c5e6-e7be-4696-a193-e2986d221ae0" name="server" url="http://49.234.150.30:8601">
+        <fileTransfer rootFolder="/usr/local/project/educiot-recruit/educiot-recruit-server" accessType="SFTP" host="49.234.150.30" port="22" sshConfigId="7af20865-9f7b-4b21-afea-6e4db2069c37" sshConfig="root@49.234.150.30:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="37aacdd4-c0da-4e04-9dc5-612a8b14b51f" name="app" url="http://49.234.150.30:8602">
+        <fileTransfer rootFolder="/usr/local/project/educiot-recruit/educiot-recruit-app" accessType="SFTP" host="49.234.150.30" port="22" sshConfigId="7af20865-9f7b-4b21-afea-6e4db2069c37" sshConfig="root@49.234.150.30:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="61452c46-d83f-4ea1-9878-f002b27dae32" name="wechat" url="http://49.234.150.30:8603">
+        <fileTransfer rootFolder="/usr/local/project/educiot-recruit/educiot-recruit-wechat" accessType="SFTP" host="49.234.150.30" port="22" sshConfigId="7af20865-9f7b-4b21-afea-6e4db2069c37" sshConfig="root@49.234.150.30:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="5e698aec-6756-4fa9-a0c1-cbddcc9c4667" name="client" url="http://49.234.150.30:9000">
+        <fileTransfer rootFolder="/usr/local/project/educiot-recruit" accessType="SFTP" host="49.234.150.30" port="22" sshConfigId="7af20865-9f7b-4b21-afea-6e4db2069c37" sshConfig="root@49.234.150.30:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="b8eb22b9-854d-4093-ac9e-afe8138c1c0a" name="49.234.150.30">
+        <fileTransfer accessType="SFTP" host="49.234.150.30" port="22" sshConfigId="7af20865-9f7b-4b21-afea-6e4db2069c37" sshConfig="root@49.234.150.30:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+    <groups>
+      <group>
+        <name>educiot</name>
+        <servers>
+          <name value="server" />
+          <name value="app" />
+          <name value="wechat" />
+          <name value="client" />
+        </servers>
+      </group>
+    </groups>
+  </component>
+</project>

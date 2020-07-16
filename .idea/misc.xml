@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/server/educiot-recruit-data/pom.xml" />
+        <option value="$PROJECT_DIR$/server/educiot-recruit-common/pom.xml" />
+        <option value="$PROJECT_DIR$/server/educiot-recruit-server/pom.xml" />
+        <option value="$PROJECT_DIR$/server/educiot-recruit-server-app/pom.xml" />
+        <option value="$PROJECT_DIR$/server/educiot-recruit-server-wechat/pom.xml" />
+        <option value="$PROJECT_DIR$/server/pom.xml" />
+        <option value="$PROJECT_DIR$/server/educiot-recruit-third/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="svn://47.112.129.244/branch" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="svn://47.112.129.244/educiot-recruit" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

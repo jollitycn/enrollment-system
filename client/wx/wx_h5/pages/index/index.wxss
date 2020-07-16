@@ -1,0 +1,45 @@
+.content{
+  padding: 20rpx 40rpx;
+}
+.header{
+  height: 100vh;
+  overflow-y: auto;
+}
+.btn> view{
+  margin-top: 20rpx;
+}
+.btn > view > text {
+  color: red;
+}
+.r {
+  color: red;
+}
+.kefu{
+  background: linear-gradient(to right, blue, pink);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.n {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column
+}
+.n > image {
+  width: 480rpx;
+  height: 384rpx;
+}
+.n > view {
+  width:686rpx;
+  height: 96rpx;
+  background:rgba(0,204,255,1);
+  border-radius: 16rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #fff;
+  line-height: 96rpx;
+  margin-top: 64rpx;
+}
