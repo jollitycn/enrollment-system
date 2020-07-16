@@ -1197,10 +1197,10 @@ Listening for transport dt_socket at address: 7035
 .[34m2020-06-02 13:59:02.448[0;39m [[33mhttp-nio-8603-exec-6[0;39m] [35mDEBUG[0;39m [32mc.e.r.d.mapper.PlanMapper.selectOne[0;39m - ==> Parameters: 1(Integer), 1266313388103835649(Long) 
 .[34m2020-06-02 13:59:02.483[0;39m [[33mhttp-nio-8603-exec-6[0;39m] [35mDEBUG[0;39m [32mc.e.r.d.mapper.PlanMapper.selectOne[0;39m - <==      Total: 1 
 .[34m2020-06-02 14:07:53.836[0;39m [[33mhttp-nio-8603-exec-3[0;39m] [35mINFO [0;39m [32mc.e.r.s.w.c.WechatTokenInterceptor[0;39m - 请求uri为：---> /consultation/getConsultationDayList/1267331642867945473 
-Error: Invalid or corrupt jarfile educiot-recruit-server-wechat-0.1.15.jar
-Error: Invalid or corrupt jarfile educiot-recruit-server-wechat-0.1.15.jar
-Error: Invalid or corrupt jarfile educiot-recruit-server-wechat-0.1.15.jar
-Error: Invalid or corrupt jarfile educiot-recruit-server-wechat-0.1.15.jar
+Error: Invalid or corrupt jarfile educiot-recruit-server-wechat-0.1.16.jar
+Error: Invalid or corrupt jarfile educiot-recruit-server-wechat-0.1.16.jar
+Error: Invalid or corrupt jarfile educiot-recruit-server-wechat-0.1.16.jar
+Error: Invalid or corrupt jarfile educiot-recruit-server-wechat-0.1.16.jar
 .[34m2020-06-02 14:16:14.485[0;39m [[33mmain[0;39m] [35mINFO [0;39m [32mo.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker[0;39m - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$ccb7e6d0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) 
   ______     _               _         _   
  |  ____|   | |             (_)       | |  

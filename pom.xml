@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>educiot</groupId>
     <artifactId>educiot-recruit</artifactId>
-    <version>0.1.15</version>
+    <version>0.1.16</version>
     <name>educiot-recruit</name>
     <description>招生</description>
     <packaging>pom</packaging>
