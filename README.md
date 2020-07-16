@@ -1,3 +1,1 @@
-# educiot
-educiot
-1
+# 学校招生系统
