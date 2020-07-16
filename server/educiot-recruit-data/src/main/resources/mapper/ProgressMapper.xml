@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.ProgressMapper">
+
+    <select id="queryProgressInfo" resultType="com.educiot.recruit.data.entity.vo.ProgressVO">
+        SELECT
+            p.progress_id,
+            p.student_public_relation_id,
+            p.progress_type,
+            p.progress_content,
+            r.register_status
+        FROM
+            e_r_progress p
+        LEFT JOIN e_r_student_public_relation r ON p.student_public_relation_id = r.student_public_relation_id
+        WHERE
+            p.student_public_relation_id = #{studentPublicRelationId}
+    </select>
+
+
+    <select id="queryProgressInfoByStudentId" parameterType="java.lang.Long" resultType="com.educiot.recruit.data.entity.vo.ProgressVO">
+        SELECT
+            p.progress_id,
+            p.student_public_relation_id,
+            p.progress_type,
+            p.progress_content,
+            pr.register_status
+        FROM
+            e_r_progress p
+        LEFT JOIN e_r_student_public_relation pr ON pr.student_public_relation_id = p.student_public_relation_id
+        WHERE
+            pr.student_info = #{studentInfoId}
+    </select>
+
+    <select id="getProgress" resultType="com.educiot.recruit.data.entity.vo.ProgressListVO">
+        SELECT
+            progress_id,
+            create_time,
+            progress_type,
+            progress_content
+        FROM
+            e_r_progress
+        WHERE
+            student_public_relation_id = #{studentPublicRelationId}
+        ORDER BY
+            progress_type,
+            create_time ASC
+    </select>
+</mapper>

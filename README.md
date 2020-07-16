@@ -1,3 +1,0 @@
-# educiot
-educiot
-1

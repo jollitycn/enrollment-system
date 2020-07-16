@@ -1,1 +1,0 @@
-<web-view v-if="{{status}}" class="header" src="{{src}}"></web-view>

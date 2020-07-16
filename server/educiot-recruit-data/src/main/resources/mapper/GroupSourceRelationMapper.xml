@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.GroupSourceRelationMapper">
+
+    <!-- 分页获取招生分组信息列表 -->
+    <select id="listGroupInfoPage" resultType="com.educiot.recruit.data.entity.vo.ListSourceSchoolVO">
+        SELECT DISTINCT
+        ss.source_school_id,
+        ss.source_school_name,
+        ss.province,
+        ss.city,
+        ss.district,
+        ss.create_time
+        FROM
+        e_r_source_school ss
+        LEFT JOIN e_r_group_source_relation gsr ON ss.source_school_id = gsr.source_school_id
+        LEFT JOIN e_r_group g ON gsr.group_id = g.group_id
+        LEFT JOIN e_r_group_info gi ON g.group_info_id = gi.group_info_id
+        WHERE  ss.STATUS = 1
+        <if test="null != param.searchKey and param.searchKey != ''">
+        AND ss.source_school_name LIKE CONCAT('%', #{param.searchKey}, '%')
+        </if>
+        AND gi.recruit_school_id = #{recruitSchoolId}
+        AND gi.semester_id = #{semesterId}
+        ORDER BY
+        ss.create_time DESC
+    </select>
+
+
+    <select id="listSourceSchoolVOResult" resultType="com.educiot.recruit.data.entity.vo.ListSourceSchoolVO">
+            SELECT
+                ss.source_school_id,
+                ss.source_school_name,
+                ss.province,
+                ss.city,
+                ss.district,
+                ss.create_time
+            FROM
+                e_r_group_source_relation gsr
+            LEFT JOIN e_r_source_school ss ON ss.source_school_id = gsr.source_school_id
+            WHERE
+                gsr.group_id = #{groupId}
+            AND ss.`status` = 1
+            and gsr.semester_id=#{currentSemesterId}
+    </select>
+
+</mapper>

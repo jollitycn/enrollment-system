@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.RecruitSchoolMapper">
+    <!-- 获取招生学校集合：recruitSchoolId为null则为查询所有 -->
+    <select id="listRecruitSchool" resultType="com.educiot.recruit.data.entity.vo.RecruitSchoolIdAndNameVO">
+        SELECT rs.recruit_school_id, rs.recruit_school_name
+        FROM e_r_recruit_school rs
+        WHERE rs.is_deleted = 1
+        <if test="null != recruitSchoolId">
+            AND rs.recruit_school_id = #{recruitSchoolId}
+        </if>
+        ORDER BY rs.create_time DESC
+    </select>
+
+    <select id="listRecruitSchoolWechat" resultType="com.educiot.recruit.data.entity.vo.RecruitSchoolIdAndNameVO">
+        SELECT
+            rs.recruit_school_id,
+            rs.recruit_school_name
+        FROM
+            e_r_recruit_school rs
+            LEFT JOIN e_r_plan p ON rs.recruit_school_id = p.recruit_school_id
+        WHERE
+            rs.is_deleted = 1
+            AND p.is_defaulted = 1
+        ORDER BY
+            rs.create_time DESC
+    </select>
+
+    <select id="getRecruitSchoolIdAndNameVOById"
+            resultType="com.educiot.recruit.data.entity.vo.RecruitSchoolIdAndNameVO">
+        SELECT rs.recruit_school_id, rs.recruit_school_name,rs.api_id
+        FROM e_r_recruit_school rs
+        WHERE rs.is_deleted = 1
+        <if test="null != recruitSchoolId">
+            AND rs.recruit_school_id = #{recruitSchoolId}
+        </if>
+    </select>
+
+
+    <!-- 【小程序】 根据选择的学生查询其下的招生学校 -->
+    <select id="listRecruitSchoolByStudent" resultType="com.educiot.recruit.data.entity.vo.RecruitSchoolVO">
+      select  * from ( SELECT DISTINCT
+            rs.recruit_school_id,
+            rs.recruit_school_name,
+            rs.recruit_school_logo,
+            rs.create_time,
+            rs.api_id
+        FROM
+            e_r_student_public_relation spr
+        LEFT JOIN e_r_recruit_school rs ON rs.recruit_school_id = spr.recruit_school_id
+        WHERE rs.is_deleted = 1
+        AND spr.student_info = #{studentInfo}
+       ) a ORDER BY a.create_time DESC
+    </select>
+    <select id="queryByApiIdForlogin" resultType="com.educiot.recruit.data.entity.RecruitSchool">
+    SELECT
+            rs.recruit_school_id,
+            rs.recruit_school_name,
+            rs.recruit_school_logo,
+            rs.create_time,
+            rs.api_id
+        FROM
+           e_r_recruit_school rs
+           where rs.api_id = #{apiId}
+    </select>
+
+
+</mapper>

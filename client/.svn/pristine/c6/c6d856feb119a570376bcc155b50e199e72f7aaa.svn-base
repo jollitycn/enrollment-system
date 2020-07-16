@@ -1,8 +1,0 @@
-<!--pages/man/man.wxml-->
-<!-- <view class="kefu">
-<button type="primary" open-type="contact" class="my-kefu">我的客服</button>
-</view> -->
-<view class="n">
-  <image src="/img/2.png"></image>
-  <button open-type="contact" class="my-kefu">点击进入</button>
-</view>

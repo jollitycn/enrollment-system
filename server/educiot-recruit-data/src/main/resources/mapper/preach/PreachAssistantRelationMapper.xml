@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.educiot.recruit.data.mapper.preach.PreachAssistantRelationMapper">
+    <select id="listByPreachPlanId" parameterType="java.lang.Long" resultType="String">
+select charger_id from e_r_preach_assistant_relation where preach_plan_id = #{id}
+    </select>
+    <select id="listKeyValueByPreachPlanId" resultType="com.educiot.recruit.common.base.KeyValue">
+select CONCAT(charger_id,'') `key`,charger_name `value` from e_r_preach_assistant_relation where preach_plan_id = #{id}
+    </select>
+</mapper>
