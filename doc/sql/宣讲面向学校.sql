@@ -1,0 +1,1 @@
+SELECT * FROM e_r_preach_school_relation WHERE preach_plan_id = 1263638894595813378
