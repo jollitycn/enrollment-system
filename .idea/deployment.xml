@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="SERVER">
+    <serverData>
+      <paths name="49.234.150.30">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/server" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="SERVER">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/usr/local/project/educiot-recruit/educiot-recruit-server" local="$PROJECT_DIR$/server/educiot-recruit-server" web="http://49.234.150.30:8601" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="app">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$/server/educiot-recruit-server-app" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="client">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$/server/educiot-recruit-server-app" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/server/educiot-recruit-server-app/target/classes" />
+            <excludedPath local="true" path="$PROJECT_DIR$/server/educiot-recruit-server-app/target/classes" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="server">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$/server/educiot-recruit-server-app" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/server/educiot-recruit-server-app/target/classes" />
+            <excludedPath local="true" path="$PROJECT_DIR$/server/educiot-recruit-server-app/target/classes" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="wechat">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$/server/educiot-recruit-server-app" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/server/educiot-recruit-server-app/target/classes" />
+            <excludedPath local="true" path="$PROJECT_DIR$/server/educiot-recruit-server-app/target/classes" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="client" />
+        <module name="educiot-recruit-third" />
+        <module name="educiot-recruit-data" />
+        <module name="educiot-recruit-core" />
+        <module name="educiot-recruit-common" />
+        <module name="educiot-recruit-server" />
+        <module name="educiot-recruit-server-wechat" />
+        <module name="educiot-recruit-server-app" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="client" target="1.5" />
+      <module name="educiot" target="1.5" />
+      <module name="educiot-recruit-common" target="1.8" />
+      <module name="educiot-recruit-core" target="1.8" />
+      <module name="educiot-recruit-data" target="1.8" />
+      <module name="educiot-recruit-server" target="1.8" />
+      <module name="educiot-recruit-server-app" target="1.8" />
+      <module name="educiot-recruit-server-wechat" target="1.8" />
+      <module name="educiot-recruit-third" target="1.8" />
+      <module name="server" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="educiot-recruit-common" options="-parameters" />
+      <module name="educiot-recruit-core" options="-parameters" />
+      <module name="educiot-recruit-data" options="-parameters" />
+      <module name="educiot-recruit-server" options="-parameters" />
+      <module name="educiot-recruit-server-app" options="-parameters" />
+      <module name="educiot-recruit-server-wechat" options="-parameters" />
+      <module name="educiot-recruit-third" options="-parameters" />
+    </option>
+  </component>
+</project>

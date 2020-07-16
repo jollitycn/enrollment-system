@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/educiot.iml" filepath="$PROJECT_DIR$/educiot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/educiot-recruit-common/educiot-recruit-common.iml" filepath="$PROJECT_DIR$/server/educiot-recruit-common/educiot-recruit-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/educiot-recruit-data/educiot-recruit-data.iml" filepath="$PROJECT_DIR$/server/educiot-recruit-data/educiot-recruit-data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/educiot-recruit-server/educiot-recruit-server.iml" filepath="$PROJECT_DIR$/server/educiot-recruit-server/educiot-recruit-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/educiot-recruit-server-app/educiot-recruit-server-app.iml" filepath="$PROJECT_DIR$/server/educiot-recruit-server-app/educiot-recruit-server-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/educiot-recruit-server-wechat/educiot-recruit-server-wechat.iml" filepath="$PROJECT_DIR$/server/educiot-recruit-server-wechat/educiot-recruit-server-wechat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/educiot-recruit-third/educiot-recruit-third.iml" filepath="$PROJECT_DIR$/server/educiot-recruit-third/educiot-recruit-third.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
+    </modules>
+  </component>
+</project>
